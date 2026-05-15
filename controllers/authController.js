@@ -69,6 +69,9 @@ exports.logout = (req, res) => {
   };
   if (process.env.NODE_ENV === 'production') cookieOptions.secure = true;
 
+  // Prevent Vercel Edge caching from stripping the Set-Cookie header
+  res.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate');
+  
   res.cookie('jwt', 'loggedout', cookieOptions);
   res.status(200).json({ status: 'success' });
 };
