@@ -1,0 +1,113 @@
+/* ============================================
+   NATOURS - Animations & Effects
+   ============================================ */
+
+/* --- Scroll Reveal Animations --- */
+@keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes fadeInDown { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes fadeInLeft { from { opacity: 0; transform: translateX(-30px); } to { opacity: 1; transform: translateX(0); } }
+@keyframes fadeInRight { from { opacity: 0; transform: translateX(30px); } to { opacity: 1; transform: translateX(0); } }
+@keyframes scaleIn { from { opacity: 0; transform: scale(0.9); } to { opacity: 1; transform: scale(1); } }
+@keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+@keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.7; } }
+@keyframes shimmer { 0% { background-position: -200% 0; } 100% { background-position: 200% 0; } }
+@keyframes borderGlow {
+  0%, 100% { border-color: rgba(16,185,129,0.2); box-shadow: 0 0 10px rgba(16,185,129,0.05); }
+  50% { border-color: rgba(16,185,129,0.5); box-shadow: 0 0 20px rgba(16,185,129,0.15); }
+}
+@keyframes gradientMove {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Reveal classes applied by JS */
+.reveal { opacity: 0; transform: translateY(30px); transition: all 0.7s cubic-bezier(0.4,0,0.2,1); }
+.reveal.revealed { opacity: 1; transform: translateY(0); }
+.reveal-left { opacity: 0; transform: translateX(-30px); transition: all 0.7s cubic-bezier(0.4,0,0.2,1); }
+.reveal-left.revealed { opacity: 1; transform: translateX(0); }
+.reveal-right { opacity: 0; transform: translateX(30px); transition: all 0.7s cubic-bezier(0.4,0,0.2,1); }
+.reveal-right.revealed { opacity: 1; transform: translateX(0); }
+.reveal-scale { opacity: 0; transform: scale(0.9); transition: all 0.6s cubic-bezier(0.4,0,0.2,1); }
+.reveal-scale.revealed { opacity: 1; transform: scale(1); }
+
+/* Staggered children animation */
+.stagger-children .reveal:nth-child(1) { transition-delay: 0s; }
+.stagger-children .reveal:nth-child(2) { transition-delay: 0.1s; }
+.stagger-children .reveal:nth-child(3) { transition-delay: 0.2s; }
+.stagger-children .reveal:nth-child(4) { transition-delay: 0.3s; }
+.stagger-children .reveal:nth-child(5) { transition-delay: 0.4s; }
+.stagger-children .reveal:nth-child(6) { transition-delay: 0.5s; }
+
+/* Initial page load animations */
+.header { animation: fadeInDown 0.6s ease both; }
+.main { animation: fadeInUp 0.6s ease 0.2s both; }
+.footer { animation: fadeInUp 0.5s ease 0.3s both; }
+
+/* Card hover tilt effect */
+.card { transition: all 0.4s cubic-bezier(0.4,0,0.2,1); }
+.card:hover { transform: translateY(-8px) rotateX(2deg); }
+
+/* Button ripple effect */
+.btn { position: relative; overflow: hidden; }
+.btn .ripple {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.3);
+  transform: scale(0);
+  animation: rippleEffect 0.6s ease-out;
+  pointer-events: none;
+}
+@keyframes rippleEffect { to { transform: scale(4); opacity: 0; } }
+
+/* Floating elements */
+.floating { animation: float 4s ease-in-out infinite; }
+.floating-delay-1 { animation-delay: 0.5s; }
+.floating-delay-2 { animation-delay: 1s; }
+
+/* Glow hover for interactive elements */
+.glow-hover { transition: all var(--transition-base); }
+.glow-hover:hover { box-shadow: 0 0 20px var(--accent-glow), 0 0 40px rgba(16,185,129,0.1); }
+
+/* Gradient text animation */
+.gradient-text-animated {
+  background: linear-gradient(90deg, var(--accent-1), var(--accent-2), #34d399, var(--accent-1));
+  background-size: 300% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: gradientMove 4s ease infinite;
+}
+
+/* Loading skeleton */
+.skeleton {
+  background: linear-gradient(90deg, var(--surface-1) 25%, var(--surface-2) 50%, var(--surface-1) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+  border-radius: var(--radius-sm);
+}
+
+/* Particle dots background effect (pure CSS) */
+.particle-bg::after {
+  content: '';
+  position: absolute; inset: 0;
+  background-image:
+    radial-gradient(2px 2px at 20% 30%, rgba(16,185,129,0.3), transparent),
+    radial-gradient(2px 2px at 40% 70%, rgba(6,214,160,0.2), transparent),
+    radial-gradient(1px 1px at 60% 20%, rgba(16,185,129,0.4), transparent),
+    radial-gradient(1px 1px at 80% 50%, rgba(6,214,160,0.3), transparent),
+    radial-gradient(2px 2px at 10% 80%, rgba(16,185,129,0.2), transparent),
+    radial-gradient(1px 1px at 90% 10%, rgba(6,214,160,0.3), transparent);
+  pointer-events: none;
+  animation: float 6s ease-in-out infinite;
+}
+
+/* Reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  .reveal, .reveal-left, .reveal-right, .reveal-scale { opacity: 1; transform: none; }
+}

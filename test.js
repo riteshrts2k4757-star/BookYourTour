@@ -24,7 +24,7 @@ const viewRouter = require('./routes/viewRoutes');
 const app = express();
 
 app.set('view engine', 'pug');
-app.set('views',path.join(__dirname, 'views'));
+app.set('views', path.join(__dirname, 'views'));
 
 app.use(express.static(path.join(__dirname, 'public')));
 
@@ -37,11 +37,14 @@ app.use(
         "'self'",
         "http://127.0.0.1:3000",
         "ws://127.0.0.1:*",
-        "https://cdn.jsdelivr.net"
+        "https://cdn.jsdelivr.net",
+        "https://fonts.googleapis.com",
+        "https://fonts.gstatic.com"
       ],
-      scriptSrc: ["'self'", "https://cdn.jsdelivr.net"],
-      styleSrc: ["'self'", "'unsafe-inline'", "https:"],
-      imgSrc: ["'self'", "data:", "blob:"]
+      scriptSrc: ["'self'", "https://cdn.jsdelivr.net", "https://unpkg.com"],
+      styleSrc: ["'self'", "'unsafe-inline'", "https:", "https://fonts.googleapis.com", "https://unpkg.com"],
+      fontSrc: ["'self'", "https://fonts.gstatic.com"],
+      imgSrc: ["'self'", "data:", "blob:", "https://*.cartocdn.com"]
     }
   })
 );
@@ -60,7 +63,7 @@ const limiter = rateLimit({
 app.use('/api', limiter);
 
 app.use(express.json({ limit: '10kb' }));
-app.use(express.urlencoded({extended: true, limit: '10kb'}));
+app.use(express.urlencoded({ extended: true, limit: '10kb' }));
 app.use(cookieParser());
 
 app.use(mongoSanitize());
@@ -93,7 +96,7 @@ app.use((req, res, next) => {
 });
 
 //Router
-app.use('/',viewRouter);
+app.use('/', viewRouter);
 app.use('/api/v1/tours', tourRouter);
 app.use('/api/v1/users', userRouter);
 app.use('/api/v1/reviews', reviewRouter);
