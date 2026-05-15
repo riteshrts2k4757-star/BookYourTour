@@ -74,3 +74,15 @@ exports.getSignupForm = (req, res) => {
     
   });
 };
+
+exports.bitWater = (req, res) => {
+  res.status(200).render('bit', {
+    title: 'bitwater',
+  });
+};
+
+exports.getUpdateMe = (req, res) => {
+  res.status(200).render('updateMe', {
+    title: 'Update My Profile',
+  });
+};

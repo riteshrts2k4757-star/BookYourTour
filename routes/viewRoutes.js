@@ -8,6 +8,7 @@ router.get('/', authController.isLoggedIn, viewsController.getOverview);
 router.get('/tour/:slug', authController.isLoggedIn, viewsController.getTour);
 router.get('/login', authController.isLoggedIn, viewsController.getLoginForm);
 router.get('/me', authController.protect, viewsController.getAccount);
+router.get('/updateMe', authController.protect, viewsController.getUpdateMe);
 router.post('/submit-user-data', authController.protect, viewsController.updateUserData);
 router.get('/signup', viewsController.getSignupForm );
 
