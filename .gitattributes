@@ -1,0 +1,16 @@
+# GitHub Linguist overrides — control language stats on the repo page
+# See: https://github.com/github-linguist/linguist/blob/master/docs/overrides.md
+
+# Mark build/generated output as generated so it's excluded from language stats
+frontend/dist/**        linguist-generated=true
+backend/public/js/*.map linguist-generated=true
+backend/public/js/bundler.js linguist-generated=true
+
+# Mark vendor / third-party code
+**/node_modules/**      linguist-vendored=true
+
+# Explicitly tag languages for detection accuracy
+*.ts    linguist-language=TypeScript
+*.tsx   linguist-language=TypeScript
+*.js    linguist-language=JavaScript
+*.css   linguist-language=CSS
