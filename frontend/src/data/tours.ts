@@ -1,0 +1,506 @@
+export interface Tour {
+  id: string;
+  name: string;
+  slug: string;
+  duration: number;
+  maxGroupSize: number;
+  difficulty: 'easy' | 'medium' | 'difficult';
+  ratingsAverage: number;
+  ratingsQuantity: number;
+  price: number;
+  priceDiscount?: number;
+  summary: string;
+  description: string;
+  imageCover: string;
+  images: string[];
+  startDates: string[];
+  startLocation: {
+    description: string;
+    coordinates: [number, number];
+    address: string;
+  };
+  airport?: {
+    name: string;
+    coordinates: [number, number];
+  };
+  hotel?: {
+    name: string;
+    coordinates: [number, number];
+  };
+  locations: {
+    description: string;
+    coordinates: [number, number];
+    day: number;
+    photo?: string;
+    type?: 'airport' | 'hotel' | 'attraction' | 'stop';
+  }[];
+  guides: string[];
+  guideProfiles?: Array<{ id: string; name: string; photo: string }>;
+  category: string;
+  featured: boolean;
+  secretTour?: boolean;
+  itinerary: {
+    day: number;
+    title: string;
+    description: string;
+    activities: string[];
+  }[];
+  included: string[];
+  excluded: string[];
+  highlights: string[];
+}
+
+export const tours: Tour[] = [
+  {
+    id: 'golden-triangle',
+    name: 'Golden Triangle Heritage Circuit',
+    slug: 'golden-triangle-heritage-circuit',
+    duration: 5,
+    maxGroupSize: 12,
+    difficulty: 'easy',
+    ratingsAverage: 4.9,
+    ratingsQuantity: 124,
+    price: 17999,
+    priceDiscount: 14999,
+    summary: 'Experience the grandeur of Delhi, Agra, and Jaipur on this iconic cultural journey.',
+    description: "The Golden Triangle Heritage Circuit takes you through India's most iconic cities. Start in Delhi with its Mughal-era monuments, continue to Agra for the magnificent Taj Mahal at sunrise, and end in Jaipur's pink-walled royal city. Each stop offers palace stays, local cuisine, and immersive cultural experiences.",
+    imageCover: 'https://images.unsplash.com/photo-1524492412937-b28074a5d7da?auto=format&fit=crop&w=1200&q=80',
+    images: [
+      'https://images.unsplash.com/photo-1587474260584-136574528ed5?auto=format&fit=crop&w=900&q=80',
+      'https://images.unsplash.com/photo-1548013146-72479768bada?auto=format&fit=crop&w=900&q=80',
+      'https://images.unsplash.com/photo-1599661046289-e31897846e41?auto=format&fit=crop&w=900&q=80'
+    ],
+    startDates: ['2027-01-15', '2027-02-10', '2027-03-05', '2027-04-01'],
+    startLocation: { description: 'New Delhi, India', coordinates: [77.2090, 28.6139], address: 'Connaught Place, New Delhi' },
+    airport: { name: 'Indira Gandhi International Airport (DEL)', coordinates: [77.1000, 28.5562] },
+    hotel: { name: 'The Imperial Heritage Hotel, Janpath', coordinates: [77.2177, 28.6225] },
+    locations: [
+      { description: 'Red Fort & Old Delhi Bazaar', coordinates: [77.2410, 28.6562], day: 1, photo: 'https://images.unsplash.com/photo-1587474260584-136574528ed5?auto=format&fit=crop&w=800&q=80', type: 'attraction' },
+      { description: 'Taj Mahal Monument of Love', coordinates: [78.0421, 27.1751], day: 2, photo: 'https://images.unsplash.com/photo-1564507592333-c60657eea523?auto=format&fit=crop&w=800&q=80', type: 'attraction' },
+      { description: 'Amber Fort & Maota Lake', coordinates: [75.8513, 26.9855], day: 4, photo: 'https://images.unsplash.com/photo-1599661046289-e31897846e41?auto=format&fit=crop&w=800&q=80', type: 'attraction' }
+    ],
+    guides: ['guide-1', 'guide-2'],
+    category: 'Heritage',
+    featured: true,
+    itinerary: [
+      { day: 1, title: 'Arrive in Delhi', description: 'Welcome at airport, transfer to heritage hotel, evening walk at India Gate.', activities: ['Airport pickup', 'Hotel check-in', 'India Gate visit', 'Welcome dinner'] },
+      { day: 2, title: 'Delhi to Agra', description: 'Morning visit to Qutub Minar, drive to Agra, evening Taj Mahal sunset view.', activities: ['Qutub Minar', 'Drive to Agra', 'Mehtab Bagh sunset', 'Mughal dinner'] },
+      { day: 3, title: 'Agra Exploration', description: 'Sunrise at Taj Mahal, Agra Fort, local bazaar shopping.', activities: ['Taj Mahal sunrise', 'Agra Fort', 'Marble inlay workshop', 'Local market'] },
+      { day: 4, title: 'Agra to Jaipur', description: 'Drive to Jaipur via Fatehpur Sikri, Amber Fort visit.', activities: ['Fatehpur Sikri', 'Drive to Jaipur', 'Amber Fort', 'Light & Sound show'] },
+      { day: 5, title: 'Jaipur & Departure', description: 'City Palace, Hawa Mahal, Jantar Mantar, departure.', activities: ['City Palace', 'Hawa Mahal', 'Jantar Mantar', 'Airport transfer'] }
+    ],
+    included: ['4-star heritage hotel stays', 'Daily breakfast & dinner', 'AC vehicle transport', 'Professional guide', 'Monument entry fees', 'Airport transfers'],
+    excluded: ['Flights', 'Lunch', 'Personal shopping', 'Camera fees', 'Tips'],
+    highlights: ['Sunrise at Taj Mahal', 'Royal palace stays', 'Mughal cuisine experience', 'Amber Fort elephant ride']
+  },
+  {
+    id: 'kerala-backwaters',
+    name: 'Kerala Backwaters & Tea Gardens',
+    slug: 'kerala-backwaters-tea-gardens',
+    duration: 7,
+    maxGroupSize: 10,
+    difficulty: 'easy',
+    ratingsAverage: 4.9,
+    ratingsQuantity: 89,
+    price: 24999,
+    priceDiscount: 21999,
+    summary: 'Cruise the tranquil backwaters, explore tea plantations, and experience the best of Kerala.',
+    description: "Discover why Kerala is called God's Own Country. Glide through palm-lined backwaters on a traditional houseboat, trek through aromatic tea gardens in Munnar, and relax on golden beaches in Kovalam.",
+    imageCover: 'https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?auto=format&fit=crop&w=1200&q=80',
+    images: [
+      'https://images.unsplash.com/photo-1593693411515-c20261bcad6e?auto=format&fit=crop&w=900&q=80',
+      'https://images.unsplash.com/photo-1609340747462-e5e508a0e0f3?auto=format&fit=crop&w=900&q=80',
+      'https://images.unsplash.com/photo-1584810359583-96fc3448beaa?auto=format&fit=crop&w=900&q=80'
+    ],
+    startDates: ['2027-01-20', '2027-02-15', '2027-03-10', '2027-11-05'],
+    startLocation: { description: 'Kochi, Kerala', coordinates: [76.2673, 9.9312], address: 'Cochin International Airport' },
+    airport: { name: 'Cochin International Airport (COK)', coordinates: [76.3888, 10.1556] },
+    hotel: { name: 'Brunton Boatyard - CGH Earth', coordinates: [76.2412, 9.9678] },
+    locations: [
+      { description: 'Fort Kochi Heritage Quarter', coordinates: [76.2588, 9.9658], day: 1, photo: 'https://images.unsplash.com/photo-1593693411515-c20261bcad6e?auto=format&fit=crop&w=800&q=80', type: 'attraction' },
+      { description: 'Munnar Misty Tea Gardens', coordinates: [77.0595, 10.0889], day: 3, photo: 'https://images.unsplash.com/photo-1609340747462-e5e508a0e0f3?auto=format&fit=crop&w=800&q=80', type: 'attraction' },
+      { description: 'Alleppey Emerald Backwaters', coordinates: [76.3388, 9.4981], day: 5, photo: 'https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?auto=format&fit=crop&w=800&q=80', type: 'attraction' }
+    ],
+    guides: ['guide-3'],
+    category: 'Nature',
+    featured: true,
+    itinerary: [
+      { day: 1, title: 'Arrive in Kochi', description: 'Explore Fort Kochi heritage area, Chinese fishing nets.', activities: ['Fort Kochi walk', 'Chinese fishing nets', 'Kathakali show'] },
+      { day: 2, title: 'Kochi to Munnar', description: 'Scenic drive through Western Ghats, waterfalls.', activities: ['Cheeyappara Falls', 'Spice plantations', 'Sunset point'] },
+      { day: 3, title: 'Munnar Exploration', description: 'Tea factory visit, Eravikulam National Park.', activities: ['Tea museum', 'Eravikulam trek', 'Top Station viewpoint'] },
+      { day: 4, title: 'Munnar to Thekkady', description: 'Periyar wildlife sanctuary, spice garden walk.', activities: ['Periyar Lake cruise', 'Spice garden', 'Bamboo rafting'] },
+      { day: 5, title: 'Alleppey Houseboat', description: 'Board traditional deluxe houseboat.', activities: ['Houseboat boarding', 'Backwater cruise', 'Sunset dinner'] },
+      { day: 6, title: 'Kovalam Beach', description: 'Drive to Kovalam beach, Ayurvedic rejuvenation.', activities: ['Beach walk', 'Ayurvedic massage', 'Lighthouse visit'] },
+      { day: 7, title: 'Departure', description: 'Morning beach stroll and airport drop.', activities: ['Morning yoga', 'Airport transfer'] }
+    ],
+    included: ['Boutique hotel stays', 'Houseboat with all meals', 'Daily breakfast', 'AC vehicle', 'Guide', 'Entry tickets'],
+    excluded: ['Flights', 'Lunch (except houseboat)', 'Personal expenses', 'Tips'],
+    highlights: ['Houseboat experience', 'Tea plantation stay', 'Periyar wildlife', 'Ayurvedic wellness']
+  },
+  {
+    id: 'ladakh-adventure',
+    name: 'Ladakh High-Altitude Adventure',
+    slug: 'ladakh-high-altitude-adventure',
+    duration: 10,
+    maxGroupSize: 8,
+    difficulty: 'difficult',
+    ratingsAverage: 4.8,
+    ratingsQuantity: 56,
+    price: 34999,
+    priceDiscount: 31999,
+    summary: 'Conquer the highest motorable passes, camp under starlit skies, and explore ancient monasteries.',
+    description: "An adrenaline-packed journey through the roof of the world. Drive over Khardung La, camp by Pangong Lake, and explore the ancient Buddhist monasteries of Ladakh.",
+    imageCover: 'https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=1200&q=80',
+    images: [
+      'https://images.unsplash.com/photo-1626621331169-5f68be661cf2?auto=format&fit=crop&w=900&q=80',
+      'https://images.unsplash.com/photo-1517411032315-54ef2cb783bb?auto=format&fit=crop&w=900&q=80'
+    ],
+    startDates: ['2027-06-01', '2027-07-15', '2027-08-10', '2027-09-05'],
+    startLocation: { description: 'Leh, Ladakh', coordinates: [77.5771, 34.1526], address: 'Kushok Bakula Rimpochee Airport, Leh' },
+    locations: [
+      { description: 'Leh Palace', coordinates: [77.5855, 34.1650], day: 1 },
+      { description: 'Pangong Lake', coordinates: [78.6500, 33.7595], day: 4 },
+      { description: 'Nubra Valley', coordinates: [77.5600, 34.6857], day: 7 }
+    ],
+    guides: ['guide-1'],
+    category: 'Adventure',
+    featured: true,
+    itinerary: [
+      { day: 1, title: 'Arrive in Leh', description: 'Acclimatization day, light stroll in town.', activities: ['Rest & acclimatize', 'Leh Market walk'] },
+      { day: 2, title: 'Leh Monasteries', description: 'Visit Shanti Stupa, Thiksey Monastery.', activities: ['Shanti Stupa', 'Thiksey Monastery', 'Hall of Fame'] },
+      { day: 3, title: 'Leh to Nubra Valley', description: 'Drive via Khardung La, highest pass.', activities: ['Khardung La crossing', 'Diskit sand dunes', 'Bactrian camel ride'] },
+      { day: 4, title: 'Nubra to Pangong', description: 'Scenic off-road drive along Shyok river.', activities: ['Shyok valley drive', 'Pangong Lake arrival', 'Lakeside camp'] },
+      { day: 5, title: 'Pangong to Leh', description: 'Morning reflections, cross Chang La back to Leh.', activities: ['Sunrise at Pangong', 'Chang La pass', 'Return to Leh'] }
+    ],
+    included: ['Guesthouse & deluxe camps', 'All meals during camp', '4x4 vehicle', 'Inner line permits', 'Oxygen cylinder backup'],
+    excluded: ['Flights', 'Riding gear', 'Personal insurance', 'Tips'],
+    highlights: ['Pangong Lake camping', 'Khardung La pass', 'Nubra Valley sand dunes', 'Thiksey Monastery']
+  },
+  {
+    id: 'goa-coastal-retreat',
+    name: 'Goa Coastal Sun & Heritage',
+    slug: 'goa-coastal-sun-heritage',
+    duration: 4,
+    maxGroupSize: 15,
+    difficulty: 'easy',
+    ratingsAverage: 4.7,
+    ratingsQuantity: 203,
+    price: 12999,
+    priceDiscount: 9999,
+    summary: "Golden beaches, Portuguese architecture, vibrant night markets and relaxing ocean waves.",
+    description: "Experience the dual spirit of Goa - peaceful heritage villas and Latin quarters in Fontainhas, coupled with lively beach shacks, scuba adventures and coastal cuisines.",
+    imageCover: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=80',
+    images: [
+      'https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?auto=format&fit=crop&w=900&q=80',
+      'https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?auto=format&fit=crop&w=900&q=80'
+    ],
+    startDates: ['2027-01-05', '2027-02-14', '2027-03-20', '2027-12-20'],
+    startLocation: { description: 'Panaji, Goa', coordinates: [73.8278, 15.4909], address: 'Dabolim / Mopa Airport' },
+    locations: [
+      { description: 'Fontainhas', coordinates: [73.8322, 15.4989], day: 1 },
+      { description: 'Old Goa Churches', coordinates: [73.9116, 15.5044], day: 2 },
+      { description: 'Anjuna & Morjim', coordinates: [73.7438, 15.5807], day: 3 }
+    ],
+    guides: ['guide-4'],
+    category: 'Beach',
+    featured: true,
+    itinerary: [
+      { day: 1, title: 'Arrival & Beach Shack Vibes', description: 'Check into beach resort, sunset cocktails.', activities: ['Resort check-in', 'Sunset at beach', 'Live music dinner'] },
+      { day: 2, title: 'Heritage & Spice', description: 'Fontainhas walking tour, Old Goa churches.', activities: ['Latin Quarter walk', 'Basilica of Bom Jesus', 'Spice farm lunch'] },
+      { day: 3, title: 'Catamaran & Water Sports', description: 'Dolphin safari, paddleboarding, night market.', activities: ['Catamaran cruise', 'Water sports', 'Arpora night market'] },
+      { day: 4, title: 'Farewell Goa', description: 'Relaxed brunch and departure.', activities: ['Beach walk', 'Seafood brunch', 'Airport drop'] }
+    ],
+    included: ['4-star beach resort', 'Breakfast buffet', 'AC transfer cab', 'Sunset boat cruise', 'Spice plantation tour'],
+    excluded: ['Flights', 'Alcoholic drinks', 'Personal shopping'],
+    highlights: ['Fontainhas Latin Quarter', 'Old Goa basilicas', 'Catamaran sunset cruise', 'Pristine beach shacks']
+  },
+  {
+    id: 'rajasthan-royal-desert',
+    name: 'Royal Rajasthan Desert Trail',
+    slug: 'royal-rajasthan-desert-trail',
+    duration: 8,
+    maxGroupSize: 10,
+    difficulty: 'medium',
+    ratingsAverage: 4.9,
+    ratingsQuantity: 167,
+    price: 29999,
+    priceDiscount: 26999,
+    summary: "Live like royalty across Rajasthan's magnificent forts, palaces, and Thar desert dunes.",
+    description: "From the blue city of Jodhpur to the romantic lakes of Udaipur and the golden fortress of Jaisalmer, experience the warrior majesty, royal hospitality, and starlit desert camps.",
+    imageCover: 'https://images.unsplash.com/photo-1599661046827-dacff0c0f09a?auto=format&fit=crop&w=1200&q=80',
+    images: [
+      'https://images.unsplash.com/photo-1477587458883-47145ed94245?auto=format&fit=crop&w=900&q=80',
+      'https://images.unsplash.com/photo-1515091943-77bce71cb211?auto=format&fit=crop&w=900&q=80'
+    ],
+    startDates: ['2027-02-01', '2027-03-01', '2027-10-15', '2027-11-10'],
+    startLocation: { description: 'Udaipur, Rajasthan', coordinates: [73.7125, 24.5854], address: 'Maharana Pratap Airport, Udaipur' },
+    locations: [
+      { description: 'City Palace, Udaipur', coordinates: [73.6823, 24.5764], day: 1 },
+      { description: 'Mehrangarh Fort, Jodhpur', coordinates: [73.0183, 26.2980], day: 4 },
+      { description: 'Sam Sand Dunes, Jaisalmer', coordinates: [70.5218, 26.8286], day: 6 }
+    ],
+    guides: ['guide-2', 'guide-5'],
+    category: 'Heritage',
+    featured: true,
+    itinerary: [
+      { day: 1, title: 'Udaipur - City of Lakes', description: 'Arrive, City Palace and boat ride on Lake Pichola.', activities: ['City Palace tour', 'Lake Pichola boat ride', 'Folk dance show'] },
+      { day: 2, title: 'Udaipur to Jodhpur', description: 'Stop at Ranakpur Marble Jain Temple.', activities: ['Ranakpur visit', 'Drive to Jodhpur', 'Blue city walk'] },
+      { day: 3, title: 'Jodhpur Blue City', description: 'Explore mighty Mehrangarh Fort.', activities: ['Mehrangarh Fort tour', 'Jaswant Thada', 'Spice bazaar'] },
+      { day: 4, title: 'Jodhpur to Jaisalmer', description: 'Drive into Thar desert, golden sandstone fort.', activities: ['Jaisalmer Fort visit', 'Patwon Ki Haveli'] },
+      { day: 5, title: 'Sam Dunes Desert Camp', description: 'Camel safari, desert folk dance, stargazing.', activities: ['Camel safari', 'Dune bashing', 'Rajasthani dinner & dance'] },
+      { day: 6, title: 'Departure', description: 'Transfer to Jodhpur or Jaisalmer airport.', activities: ['Desert sunrise', 'Airport transfer'] }
+    ],
+    included: ['Heritage Haveli & Royal tent stays', 'Breakfast & traditional dinners', 'AC Innova cab', 'Monument entries', 'Camel safari'],
+    excluded: ['Flights', 'Lunches', 'Camera fees', 'Tips'],
+    highlights: ['Udaipur Lake Pichola', 'Mehrangarh Fort views', 'Thar Desert camping', 'Rajasthani cuisine']
+  },
+  {
+    id: 'kashmir-paradise-valleys',
+    name: 'Kashmir Valley Paradise & Meadows',
+    slug: 'kashmir-valley-paradise-meadows',
+    duration: 6,
+    maxGroupSize: 10,
+    difficulty: 'easy',
+    ratingsAverage: 4.9,
+    ratingsQuantity: 78,
+    price: 27999,
+    priceDiscount: 24999,
+    summary: 'Snow-capped Himalayan peaks, Dal Lake shikaras, and flower-filled alpine meadows in Gulmarg.',
+    description: "Explore the eternal beauty of Kashmir. Sleep in cedar-wood luxury houseboats on Dal Lake, ride the Gulmarg gondola above the clouds, and walk through pine-clad valleys of Pahalgam.",
+    imageCover: 'https://images.unsplash.com/photo-1516483638261-f4dbaf036963?auto=format&fit=crop&w=1200&q=80',
+    images: [
+      'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=900&q=80',
+      'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=900&q=80'
+    ],
+    startDates: ['2027-04-01', '2027-05-15', '2027-06-10', '2027-09-20'],
+    startLocation: { description: 'Srinagar, J&K', coordinates: [74.7973, 34.0837], address: 'Sheikh ul-Alam Airport, Srinagar' },
+    locations: [
+      { description: 'Dal Lake', coordinates: [74.8567, 34.1155], day: 1 },
+      { description: 'Gulmarg Gondola', coordinates: [74.3802, 34.0484], day: 3 },
+      { description: 'Pahalgam Betaab Valley', coordinates: [75.3145, 34.0161], day: 5 }
+    ],
+    guides: ['guide-5'],
+    category: 'Mountain',
+    featured: true,
+    itinerary: [
+      { day: 1, title: 'Welcome to Srinagar', description: 'Traditional Shikara ride and houseboat check-in.', activities: ['Shikara ride', 'Floating market', 'Wazwan dinner'] },
+      { day: 2, title: 'Mughal Gardens', description: 'Visit Nishat Bagh, Shalimar Bagh, Shankaracharya.', activities: ['Nishat Bagh', 'Shalimar Bagh', 'Old city artisan shops'] },
+      { day: 3, title: 'Gulmarg Meadow of Flowers', description: 'Ride world-class gondola to snow summits.', activities: ['Gondola ride Phase 1 & 2', 'Snow activities', 'Pine walks'] },
+      { day: 4, title: 'Pahalgam Valley', description: 'Lidder riverbanks, Betaab Valley, Aru Valley.', activities: ['Drive to Pahalgam', 'Betaab Valley', 'Lidder river walk'] },
+      { day: 5, title: 'Pahalgam Adventure', description: 'Pony rides to Baisaran meadow, bonfire.', activities: ['Baisaran meadow', 'Local trout tasting', 'Bonfire night'] },
+      { day: 6, title: 'Departure', description: 'Scenic drive to Srinagar airport.', activities: ['Saffron shopping', 'Airport drop'] }
+    ],
+    included: ['Luxury houseboat stay', 'Resort stays in Pahalgam', 'All breakfasts & dinners', 'AC private vehicle', 'Gondola pass Phase 1'],
+    excluded: ['Flights', 'Gondola Phase 2 ticket', 'Pony charges', 'Tips'],
+    highlights: ['Dal Lake Shikara', 'Gulmarg Gondola snow ride', 'Pahalgam pine forests', 'Traditional Kashmiri Wazwan']
+  },
+  {
+    id: 'varanasi-spiritual-roots',
+    name: 'Varanasi Sacred Ghats & Spiritual Awakening',
+    slug: 'varanasi-sacred-ghats-spiritual-awakening',
+    duration: 3,
+    maxGroupSize: 12,
+    difficulty: 'easy',
+    ratingsAverage: 4.8,
+    ratingsQuantity: 95,
+    price: 9999,
+    priceDiscount: 8499,
+    summary: "Witness the timeless dawn rituals and mesmerizing evening Ganga Aarti in the world's oldest living city.",
+    description: "Varanasi is the soul of India. Experience the evening Maha Aarti at Dashashwamedh Ghat, take a sunrise boat ride along 84 sacred ghats, and explore the ancient stupas of Sarnath where Buddha gave his first sermon.",
+    imageCover: 'https://images.unsplash.com/photo-1561361513-2d000a50f0dc?auto=format&fit=crop&w=1200&q=80',
+    images: [
+      'https://images.unsplash.com/photo-1570168007204-dfb528c6958f?auto=format&fit=crop&w=900&q=80',
+      'https://images.unsplash.com/photo-1596402184320-417e7178b2cd?auto=format&fit=crop&w=900&q=80'
+    ],
+    startDates: ['2027-01-10', '2027-02-20', '2027-03-15', '2027-10-25'],
+    startLocation: { description: 'Varanasi, UP', coordinates: [83.0007, 25.3176], address: 'Lal Bahadur Shastri Airport' },
+    locations: [
+      { description: 'Dashashwamedh Ghat', coordinates: [83.0104, 25.3109], day: 1 },
+      { description: 'Assi Ghat', coordinates: [83.0062, 25.2905], day: 2 },
+      { description: 'Sarnath', coordinates: [83.0247, 25.3814], day: 3 }
+    ],
+    guides: ['guide-3'],
+    category: 'Cultural',
+    featured: false,
+    itinerary: [
+      { day: 1, title: 'The Sacred River', description: 'Arrive, riverside hotel, evening grand Ganga Aarti.', activities: ['Hotel check-in', 'Ghat walk', 'Maha Aarti from boat'] },
+      { day: 2, title: 'Sunrise on Ganges & Old City', description: 'Dawn rowboat cruise, alleyways, Banarasi silk weavers.', activities: ['Sunrise boat ride', 'Kashi Vishwanath Corridor', 'Silk weaving center', 'Street food crawl'] },
+      { day: 3, title: 'Sarnath & Departure', description: 'Dhamek Stupa at Sarnath, peaceful departure.', activities: ['Sarnath museum & stupa', 'Banarasi paan tasting', 'Airport transfer'] }
+    ],
+    included: ['Heritage hotel overlooking Ganges', 'Daily breakfast', 'Private morning & evening boat rides', 'Priest-guided heritage walk', 'AC transport'],
+    excluded: ['Flights', 'Lunch/Dinner', 'Temple offerings', 'Tips'],
+    highlights: ['Grand Ganga Aarti from boat', 'Sunrise Ganges rowboat', 'Kashi Vishwanath Corridor', 'Sarnath Buddhist Stupa']
+  },
+  {
+    id: 'andaman-tropical-escape',
+    name: 'Andaman Coral Reefs & Scuba Expedition',
+    slug: 'andaman-coral-reefs-scuba-expedition',
+    duration: 6,
+    maxGroupSize: 12,
+    difficulty: 'easy',
+    ratingsAverage: 4.8,
+    ratingsQuantity: 112,
+    price: 26999,
+    priceDiscount: 23999,
+    summary: 'Turquoise waters, pristine white-sand beaches, scuba diving and bioluminescent night kayaking.',
+    description: "Escape to Havelock and Neil Islands. Walk on Asia's finest Radhanagar Beach, dive into vibrant coral kingdoms, and kayak under magical glowing bioluminescent waters.",
+    imageCover: 'https://images.unsplash.com/photo-1559827260-dc66d52bef19?auto=format&fit=crop&w=1200&q=80',
+    images: [
+      'https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=900&q=80',
+      'https://images.unsplash.com/photo-1483683804023-6ccdb62f86ef?auto=format&fit=crop&w=900&q=80'
+    ],
+    startDates: ['2027-01-20', '2027-02-15', '2027-03-10', '2027-11-05'],
+    startLocation: { description: 'Port Blair, Andaman', coordinates: [92.7265, 11.6234], address: 'Veer Savarkar Airport' },
+    locations: [
+      { description: 'Cellular Jail', coordinates: [92.7416, 11.6837], day: 1 },
+      { description: 'Radhanagar Beach', coordinates: [92.9505, 11.9808], day: 2 },
+      { description: 'Elephant Beach', coordinates: [92.9706, 12.0200], day: 3 }
+    ],
+    guides: ['guide-4'],
+    category: 'Beach',
+    featured: false,
+    itinerary: [
+      { day: 1, title: 'Port Blair History', description: 'Cellular Jail and dramatic Light & Sound show.', activities: ['Airport pickup', 'Cellular Jail tour', 'Corbyn Cove beach sunset'] },
+      { day: 2, title: 'Cruise to Havelock', description: 'Luxury catamaran to Havelock, Radhanagar Beach sunset.', activities: ['Ferry to Havelock', 'Radhanagar beach walk', 'Seafood dinner'] },
+      { day: 3, title: 'Scuba Diving at Elephant Beach', description: 'Discover Nemo reefs and underwater marvels.', activities: ['Scuba diving session', 'Snorkeling', 'Night bioluminescent kayaking'] },
+      { day: 4, title: 'Neil Island Serenity', description: 'Natural rock bridge and Laxmanpur Beach.', activities: ['Ferry to Neil', 'Natural Bridge formation', 'Laxmanpur sunset'] },
+      { day: 5, title: 'Return to Port Blair', description: 'Shopping for pearl crafts and farewell dinner.', activities: ['Catamaran to Port Blair', 'Sagarika emporium', 'Beachside dinner'] },
+      { day: 6, title: 'Departure', description: 'Transfer to Port Blair airport.', activities: ['Breakfast', 'Airport drop'] }
+    ],
+    included: ['Beach resort stays', 'Catamaran ferry tickets', 'Daily breakfast', '1 Introductory Scuba Dive session', 'All transfers'],
+    excluded: ['Flights to Port Blair', 'Water sports insurance', 'Lunches & dinners', 'Tips'],
+    highlights: ['Radhanagar Beach sunset', 'Scuba diving with instructors', 'Night kayaking', 'Historic Cellular Jail']
+  },
+  {
+    id: 'kedarkantha-summit-trek',
+    name: 'Kedarkantha Himalayan Summit Trek',
+    slug: 'kedarkantha-himalayan-summit-trek',
+    duration: 6,
+    maxGroupSize: 12,
+    difficulty: 'medium',
+    ratingsAverage: 4.9,
+    ratingsQuantity: 86,
+    price: 16999,
+    priceDiscount: 14999,
+    summary: 'Hike through pine forests and snowy meadows to a memorable Himalayan summit sunrise.',
+    description: 'A guided winter trek from Sankri through quiet Himalayan villages, pine forests and open campsites to the Kedarkantha summit. The itinerary includes time to acclimatize and return safely with an experienced local trek crew.',
+    imageCover: 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1200&q=80',
+    images: [
+      'https://images.unsplash.com/photo-1454496522488-7a8e488e8606?auto=format&fit=crop&w=900&q=80',
+      'https://images.unsplash.com/photo-1418065460487-3e41a6c84dc5?auto=format&fit=crop&w=900&q=80'
+    ],
+    startDates: ['2027-01-10', '2027-02-07', '2027-03-07', '2027-12-12'],
+    startLocation: { description: 'Sankri, Uttarakhand', coordinates: [78.175, 31.191], address: 'Sankri base village, Uttarkashi district' },
+    locations: [
+      { description: 'Juda Ka Talab campsite', coordinates: [78.185, 31.075], day: 2 },
+      { description: 'Kedarkantha base camp', coordinates: [78.179, 31.014], day: 4 },
+      { description: 'Kedarkantha summit', coordinates: [78.180, 31.005], day: 5 }
+    ],
+    guides: [],
+    category: 'Trek',
+    featured: true,
+    itinerary: [
+      { day: 1, title: 'Arrive in Sankri', description: 'Meet the trek team, settle into the village stay and attend the safety briefing.', activities: ['Sankri arrival', 'Guide briefing', 'Gear check'] },
+      { day: 2, title: 'Sankri to Juda Ka Talab', description: 'Climb gradually through cedar and pine forest to the first campsite.', activities: ['Guided forest hike', 'Packed lunch', 'Campsite orientation'] },
+      { day: 3, title: 'Juda Ka Talab to Kedarkantha Base', description: 'Continue above the tree line with views of the surrounding Himalayan peaks.', activities: ['Alpine meadow trail', 'Mountain views', 'Rest and hydrate'] },
+      { day: 4, title: 'Acclimatization at Base Camp', description: 'Take a shorter acclimatization walk and prepare for the summit attempt.', activities: ['Acclimatization walk', 'Trek briefing', 'Early dinner'] },
+      { day: 5, title: 'Summit and return to Sankri', description: 'Start before dawn for the summit, then descend to the village.', activities: ['Guided summit hike', 'Sunrise viewpoint', 'Descent to Sankri'] },
+      { day: 6, title: 'Departure', description: 'Breakfast in Sankri and onward travel.', activities: ['Breakfast', 'Trek completion'] }
+    ],
+    included: ['Village stay and trek camps', 'Meals during the trek', 'Qualified local trek leader', 'Group safety equipment', 'Forest permits'],
+    excluded: ['Travel to and from Sankri', 'Personal trekking gear', 'Travel insurance', 'Personal expenses'],
+    highlights: ['Sunrise from Kedarkantha summit', 'Himalayan forest trails', 'Small guided group', 'Sankri village stay']
+  },
+  {
+    id: 'triund-dharamshala-trek',
+    name: 'Triund Ridge & Dharamshala Trek',
+    slug: 'triund-ridge-dharamshala-trek',
+    duration: 3,
+    maxGroupSize: 14,
+    difficulty: 'easy',
+    ratingsAverage: 4.8,
+    ratingsQuantity: 72,
+    price: 9999,
+    priceDiscount: 8499,
+    summary: 'A beginner-friendly trail above McLeod Ganj with wide views of the Dhauladhar range.',
+    description: 'Pair a guided hike to Triund ridge with time to explore Dharamshala and McLeod Ganj. This short Himalayan escape is designed for first-time trekkers, with a steady ascent and an overnight mountain camp.',
+    imageCover: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=1200&q=80',
+    images: [
+      'https://images.unsplash.com/photo-1464278533981-50106e6176b1?auto=format&fit=crop&w=900&q=80',
+      'https://images.unsplash.com/photo-1472396961693-142e6e269027?auto=format&fit=crop&w=900&q=80'
+    ],
+    startDates: ['2027-02-20', '2027-03-20', '2027-04-17', '2027-10-16'],
+    startLocation: { description: 'McLeod Ganj, Himachal Pradesh', coordinates: [76.3234, 32.2426], address: 'McLeod Ganj, Dharamshala' },
+    locations: [
+      { description: 'Bhagsu Nag', coordinates: [76.325, 32.253], day: 1 },
+      { description: 'Triund ridge campsite', coordinates: [76.355, 32.275], day: 2 },
+      { description: 'Dharamkot trail', coordinates: [76.329, 32.253], day: 3 }
+    ],
+    guides: [],
+    category: 'Trek',
+    featured: true,
+    itinerary: [
+      { day: 1, title: 'Arrive in Dharamshala', description: 'Check in and take an easy orientation walk around McLeod Ganj.', activities: ['Hotel check-in', 'McLeod Ganj walk', 'Trek briefing'] },
+      { day: 2, title: 'Hike to Triund', description: 'Follow the forest trail to the ridge and camp beneath the Dhauladhar peaks.', activities: ['Guided ridge hike', 'Trail lunch', 'Mountain sunset'] },
+      { day: 3, title: 'Descend and depart', description: 'Enjoy the morning mountain views before returning to Dharamshala.', activities: ['Breakfast at camp', 'Guided descent', 'Departure'] }
+    ],
+    included: ['Two nights accommodation', 'Meals during the trek', 'Local trek guide', 'Camping equipment', 'Trail permits'],
+    excluded: ['Transport to Dharamshala', 'Personal trekking gear', 'Travel insurance', 'Personal expenses'],
+    highlights: ['Dhauladhar mountain views', 'Beginner-friendly guided hike', 'Triund ridge camp', 'McLeod Ganj visit']
+  },
+  {
+    id: 'valley-of-flowers-trek',
+    name: 'Valley of Flowers & Hemkund Trek',
+    slug: 'valley-of-flowers-hemkund-trek',
+    duration: 7,
+    maxGroupSize: 10,
+    difficulty: 'difficult',
+    ratingsAverage: 4.9,
+    ratingsQuantity: 64,
+    price: 21999,
+    priceDiscount: 19999,
+    summary: 'Trek through Uttarakhand’s alpine meadows to the Valley of Flowers and Hemkund Sahib.',
+    description: 'Travel from Rishikesh into the Garhwal Himalaya for a guided trek to the UNESCO-listed Valley of Flowers National Park and the high-altitude lake at Hemkund Sahib. The route is steep in places and requires good fitness.',
+    imageCover: 'https://images.unsplash.com/photo-1472396961693-142e6e269027?auto=format&fit=crop&w=1200&q=80',
+    images: [
+      'https://images.unsplash.com/photo-1464278533981-50106e6176b1?auto=format&fit=crop&w=900&q=80',
+      'https://images.unsplash.com/photo-1470770841072-f978cf4d019e?auto=format&fit=crop&w=900&q=80'
+    ],
+    startDates: ['2027-07-10', '2027-07-24', '2027-08-07', '2027-08-21'],
+    startLocation: { description: 'Rishikesh, Uttarakhand', coordinates: [78.2676, 30.0869], address: 'Rishikesh, Dehradun district' },
+    locations: [
+      { description: 'Govindghat', coordinates: [79.565, 30.625], day: 2 },
+      { description: 'Ghangaria base village', coordinates: [79.605, 30.698], day: 3 },
+      { description: 'Valley of Flowers National Park', coordinates: [79.602, 30.728], day: 4 },
+      { description: 'Hemkund Sahib', coordinates: [79.620, 30.704], day: 5 }
+    ],
+    guides: [],
+    category: 'Trek',
+    featured: true,
+    itinerary: [
+      { day: 1, title: 'Arrive in Rishikesh', description: 'Meet the group and prepare for the mountain drive.', activities: ['Group welcome', 'Equipment check', 'Route briefing'] },
+      { day: 2, title: 'Drive to Govindghat', description: 'Travel through the Alaknanda valley to the trek starting point.', activities: ['Mountain drive', 'River viewpoints', 'Govindghat stay'] },
+      { day: 3, title: 'Trek to Ghangaria', description: 'Follow the established trail alongside the Laxman Ganga river.', activities: ['Guided uphill trek', 'Trail lunch', 'Ghangaria check-in'] },
+      { day: 4, title: 'Valley of Flowers', description: 'Explore the alpine meadows with a local guide and return to Ghangaria.', activities: ['National park trek', 'Wildflower viewing', 'Guided nature walk'] },
+      { day: 5, title: 'Hemkund Sahib', description: 'Climb to the high-altitude lake and return to the base village.', activities: ['Early start', 'Guided ascent', 'Descent to Ghangaria'] },
+      { day: 6, title: 'Return to Govindghat', description: 'Descend to the valley and rest after the trek.', activities: ['Trail descent', 'Govindghat stay', 'Trek debrief'] },
+      { day: 7, title: 'Departure', description: 'Continue onward travel from Govindghat.', activities: ['Breakfast', 'Departure transfer'] }
+    ],
+    included: ['Mountain guesthouse stays', 'Meals on trek days', 'Local trek guide', 'National park entry permit', 'Basic group first-aid kit'],
+    excluded: ['Travel to Rishikesh', 'Personal porter or mule', 'Trekking equipment', 'Travel insurance'],
+    highlights: ['Valley of Flowers National Park', 'Hemkund Sahib high-altitude lake', 'Garhwal Himalayan scenery', 'Guided small-group trek']
+  }
+];
+
+export const tourCategories = [
+  { id: 'adventure', name: 'Adventure', icon: 'Compass', count: 15, image: 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=600&q=80' },
+  { id: 'heritage', name: 'Heritage', icon: 'Landmark', count: 12, image: 'https://images.unsplash.com/photo-1524492412937-b28074a5d7da?auto=format&fit=crop&w=600&q=80' },
+  { id: 'cultural', name: 'Cultural', icon: 'Palette', count: 10, image: 'https://images.unsplash.com/photo-1561361513-2d000a50f0dc?auto=format&fit=crop&w=600&q=80' },
+  { id: 'beach', name: 'Beach', icon: 'Sun', count: 14, image: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=600&q=80' },
+  { id: 'mountain', name: 'Mountain', icon: 'Mountain', count: 11, image: 'https://images.unsplash.com/photo-1486870591958-9b9d0d1dda99?auto=format&fit=crop&w=600&q=80' },
+  { id: 'family', name: 'Family', icon: 'Users', count: 9, image: 'https://images.unsplash.com/photo-1511895426328-dc8714191300?auto=format&fit=crop&w=600&q=80' },
+  { id: 'romantic', name: 'Romantic', icon: 'Heart', count: 7, image: 'https://images.unsplash.com/photo-1516483638261-f4dbaf036963?auto=format&fit=crop&w=600&q=80' },
+  { id: 'weekend', name: 'Weekend', icon: 'Calendar', count: 18, image: 'https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?auto=format&fit=crop&w=600&q=80' },
+  { id: 'budget', name: 'Budget', icon: 'Coins', count: 13, image: 'https://images.unsplash.com/photo-1530789253388-582c481c54b0?auto=format&fit=crop&w=600&q=80' }
+];
+
